@@ -14,6 +14,12 @@ module Shaku
       end
     end
 
+    describe 'constructor' do
+      it 'create a new Measure' do
+        expect(Shaku::Measure(10, 'cm').scale).to eq(10)
+      end
+    end
+
     describe "validations" do
       it 'must have a valid scale' do
         expect { Measure.new('foo', 'cm') }.to raise_error(ArgumentError, 'Scale should be a number')
