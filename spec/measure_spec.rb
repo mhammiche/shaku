@@ -23,5 +23,11 @@ module Shaku
         expect { Measure.new(100, 5) }.to raise_error(ArgumentError, 'Unit argument should be a string')
       end
     end
+
+    describe 'formatting' do
+      it 'is human readable' do
+        expect(Measure.new(10, 'cm').inspect).to eq('(10.0 cm)')
+      end
+    end
   end
 end

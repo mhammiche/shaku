@@ -8,5 +8,9 @@ module Shaku
       @scale = scale.to_f
       @unit = unit
     end
+
+    def inspect
+      "(#{scale} #{unit})"
+    end
   end
 end
