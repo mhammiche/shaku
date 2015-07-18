@@ -14,6 +14,26 @@ module Shaku
       end
     end
 
+    describe "Equality" do
+      let(:measure) { Measure.new(10, 'cm') }
+
+      it "equals a measure with same scale and unit" do
+        expect(measure).to eq(Measure.new(10, 'cm'))
+      end
+
+      it "does not equal a measure with a unit" do
+        expect(measure).to_not eq(Measure.new(10, 'kg'))
+      end
+
+      it 'does not equal to a number' do
+        expect(measure).to_not eq(10)
+      end
+
+      it "has a consistent hash" do
+        expect(measure.hash).to eq(Measure.new(10, 'cm').hash)
+      end
+    end
+
     describe 'constructor' do
       it 'create a new Measure' do
         expect(Shaku::Measure(10, 'cm').scale).to eq(10)

@@ -12,5 +12,16 @@ module Shaku
     def inspect
       "(#{scale} #{unit})"
     end
+
+    def ==(other)
+      return false unless other.class == self.class
+      scale == other.scale && unit == other.unit
+    end
+
+    alias :eql? :==
+
+    def hash
+      [scale, unit].hash
+    end
   end
 end
