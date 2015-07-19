@@ -75,6 +75,20 @@ module Shaku
           expect{a + 2}.to raise_error(TypeError, 'Cannot convert Fixnum to Measure')
         end
       end
+
+      describe '-@' do
+        it 'returns the opposite value of the measure' do
+          a = Measure.new(1, 'cm')
+          expect(-a).to eq(Measure.new(-1, 'cm'))
+        end
+      end
+
+      describe '+@' do
+        it 'returns the same the measure' do
+          a = Measure.new(1, 'cm')
+          expect(+a).to eq(Measure.new(1, 'cm'))
+        end
+      end
     end
   end
 end

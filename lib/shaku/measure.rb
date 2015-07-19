@@ -34,5 +34,13 @@ module Shaku
 
       self.class.new(scale + other.scale, unit)
     end
+
+    def +@
+      self
+    end
+
+    def -@
+      self.class.new(-scale, unit)
+    end
   end
 end
