@@ -9,6 +9,10 @@ module Shaku
       @unit = unit
     end
 
+    def to_measure
+      self
+    end
+
     def inspect
       "(#{scale} #{unit})"
     end
@@ -22,6 +26,13 @@ module Shaku
 
     def hash
       [scale, unit].hash
+    end
+
+    def +(other)
+      raise TypeError, "Cannot convert #{other.class} to Measure" unless other.respond_to?(:to_measure)
+      raise ArgumentError, 'Inconsistent unit' unless other.unit == unit
+
+      self.class.new(scale + other.scale, unit)
     end
   end
 end

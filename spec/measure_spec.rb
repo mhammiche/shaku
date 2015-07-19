@@ -55,5 +55,26 @@ module Shaku
         expect(Measure.new(10, 'cm').inspect).to eq('(10.0 cm)')
       end
     end
+
+    describe 'Arithmetics' do
+      describe 'Addition' do
+        it 'can add measure of same unit' do
+          a = Measure.new(1, 'cm')
+          b = Measure.new(2, 'cm')
+          expect(a + b).to eq(Measure.new(3, 'cm'))
+        end
+
+        it 'cannot add measure of different unit' do
+          a = Measure.new(1, 'cm')
+          b = Measure.new(2, 'kg')
+          expect{a + b}.to raise_error(ArgumentError, 'Inconsistent unit')
+        end
+
+        it 'cannot add a scalar to a measure' do
+          a = Measure.new(1, 'cm')
+          expect{a + 2}.to raise_error(TypeError, 'Cannot convert Fixnum to Measure')
+        end
+      end
+    end
   end
 end
