@@ -89,6 +89,18 @@ module Shaku
           expect(+a).to eq(Measure.new(1, 'cm'))
         end
       end
+
+      describe 'multiplication by a scalar' do
+        let(:measure) { Measure.new(2, 'cm') }
+
+        it 'is a Measure with the same unit' do
+          expect(measure * 2).to eq(Measure.new(4, 'cm'))
+        end
+
+        it 'is commutative' do
+          expect(2 * measure).to eq(Measure.new(4, 'cm'))
+        end
+      end
     end
   end
 end

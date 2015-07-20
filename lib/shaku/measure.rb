@@ -42,5 +42,13 @@ module Shaku
     def -@
       self.class.new(-scale, unit)
     end
+
+    def *(number)
+      Measure.new(scale*number, unit)
+    end
+
+    def coerce(other)
+      [ self, other]
+    end
   end
 end
