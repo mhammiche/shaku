@@ -1,5 +1,7 @@
 module Shaku
   class Measure
+    include Comparable
+
     attr_reader :scale, :unit
 
     def initialize(scale, unit)
@@ -29,8 +31,7 @@ module Shaku
     end
 
     def +(other)
-      raise TypeError, "Cannot convert #{other.class} to Measure" unless other.respond_to?(:to_measure)
-      raise ArgumentError, 'Inconsistent unit' unless other.unit == unit
+      ensure_same_type!(other)
 
       self.class.new(scale + other.scale, unit)
     end
@@ -50,5 +51,19 @@ module Shaku
     def coerce(other)
       [ self, other]
     end
+
+    def <=>(other)
+      ensure_same_type!(other)
+
+      scale <=> other.scale
+    end
+
+    private
+
+    def ensure_same_type!(other)
+      raise TypeError, "Cannot convert #{other.class} to Measure" unless other.respond_to?(:to_measure)
+      raise ArgumentError, 'Inconsistent unit' unless other.unit == unit
+    end
+
   end
 end

@@ -101,6 +101,23 @@ module Shaku
           expect(2 * measure).to eq(Measure.new(4, 'cm'))
         end
       end
+
+      describe 'comparable' do
+        it 'can compare measure of the same unit' do
+          expect(Measure.new(1, 'cm') <= Measure.new(1, 'cm')).to eq(true)
+          expect(Measure.new(1, 'cm') < Measure.new(1, 'cm')).to eq(false)
+          expect(Measure.new(1, 'cm') < Measure.new(2, 'cm')).to eq(true)
+          expect(Measure.new(2, 'cm') > Measure.new(1, 'cm')).to eq(true)
+        end
+
+        it 'cannot compare measure of different unit' do
+          expect { Measure.new(1, 'cm') < Measure.new(2, 'kg') }.to raise_error(ArgumentError, 'Inconsistent unit')
+        end
+
+        it 'cannot compare to a scalar value' do
+          expect { Measure.new(1, 'cm') < 2 }.to raise_error(TypeError, 'Cannot convert Fixnum to Measure')
+        end
+      end
     end
   end
 end
