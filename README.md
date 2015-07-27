@@ -1,5 +1,7 @@
 # Shaku
 
+[![Build Status](https://travis-ci.org/mhammiche/shaku.svg?branch=master)](https://travis-ci.org/mhammiche/shaku)
+
 Shaku is a little gem that handle Measurement calculation and conversion. It is still in its early development phase so the current project is just a boiler plate.
 
 ## Installation
