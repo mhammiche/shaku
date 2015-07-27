@@ -1,6 +1,9 @@
+require 'shaku/measure/arithmetic'
+
 module Shaku
   class Measure
     include Comparable
+    include Arithmetic
 
     attr_reader :scale, :unit
 
@@ -28,24 +31,6 @@ module Shaku
 
     def hash
       [scale, unit].hash
-    end
-
-    def +(other)
-      ensure_same_type!(other)
-
-      self.class.new(scale + other.scale, unit)
-    end
-
-    def +@
-      self
-    end
-
-    def -@
-      self.class.new(-scale, unit)
-    end
-
-    def *(number)
-      Measure.new(scale*number, unit)
     end
 
     def coerce(other)
