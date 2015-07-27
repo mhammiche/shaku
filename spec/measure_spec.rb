@@ -118,6 +118,15 @@ module Shaku
           expect { Measure.new(1, 'cm') < 2 }.to raise_error(TypeError, 'Cannot convert Fixnum to Measure')
         end
       end
+
+      describe 'conversions' do
+        describe 'to_measure' do
+          it 'is self' do
+            measure = Measure.new(2, 'cm')
+            expect(measure.to_measure).to be(measure)
+          end
+        end
+      end
     end
   end
 end
