@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mhammiche/shaku.svg?branch=master)](https://travis-ci.org/mhammiche/shaku)
 [![Coverage Status](https://coveralls.io/repos/mhammiche/shaku/badge.svg?branch=master&service=github)](https://coveralls.io/github/mhammiche/shaku?branch=master)
+[![Inline docs](http://inch-ci.org/github/mhammiche/shaku.svg?branch=master)](http://inch-ci.org/github/mhammiche/shaku)
 
 Shaku is a little gem that handle Measurement calculation and conversion. It is still in its early development phase so the current project is just a boiler plate.
 
