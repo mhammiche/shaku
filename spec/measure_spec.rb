@@ -98,8 +98,8 @@ module Shaku
           expect(measure * 2).to eq(Measure.new(4, 'cm'))
         end
 
-        it 'is commutative' do
-          expect(2 * measure).to eq(Measure.new(4, 'cm'))
+        it 'is not commutative' do
+          expect{2 * measure}.to raise_error
         end
       end
 

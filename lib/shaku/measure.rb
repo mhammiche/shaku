@@ -33,10 +33,6 @@ module Shaku
       [scale, unit].hash
     end
 
-    def coerce(other)
-      [ self, other]
-    end
-
     def <=>(other)
       ensure_same_type!(other)
 
