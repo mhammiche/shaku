@@ -77,6 +77,25 @@ module Shaku
         end
       end
 
+      describe 'Substraction' do
+        it 'can substract measure of same unit' do
+          a = Measure.new(1, 'cm')
+          b = Measure.new(2, 'cm')
+          expect(a - b).to eq(Measure.new(-1, 'cm'))
+        end
+
+        it 'cannot substract measure of different unit' do
+          a = Measure.new(1, 'cm')
+          b = Measure.new(2, 'kg')
+          expect{a - b}.to raise_error(ArgumentError, 'Inconsistent unit')
+        end
+
+        it 'cannot substract a scalar to a measure' do
+          a = Measure.new(1, 'cm')
+          expect{a - 2}.to raise_error(TypeError, 'Cannot convert Fixnum to Measure')
+        end
+      end
+
       describe '-@' do
         it 'returns the opposite value of the measure' do
           a = Measure.new(1, 'cm')
@@ -99,7 +118,19 @@ module Shaku
         end
 
         it 'is not commutative' do
-          expect{2 * measure}.to raise_error
+          expect{2 * measure}.to raise_error(TypeError)
+        end
+      end
+
+      describe 'division by a scalar' do
+        let(:measure) { Measure.new(10, 'cm') }
+
+        it 'is a Measure with the same unit' do
+          expect(measure / 2).to eq(Measure.new(5, 'cm'))
+        end
+
+        it 'is not commutative' do
+          expect{2 / measure}.to raise_error(TypeError)
         end
       end
 
