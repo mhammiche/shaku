@@ -36,7 +36,8 @@ module Shaku
 
     describe 'constructor' do
       it 'create a new Measure' do
-        expect(Shaku::Measure(10, 'cm').scale).to eq(10)
+        extend Shaku
+        expect(Measure(10, 'cm').scale).to eq(10)
       end
     end
 
