@@ -1,4 +1,5 @@
 require 'shaku/measure/arithmetic'
+require 'shaku/measure/conversion'
 
 # A Measure is an object that represents a measurement of a physical property.
 # It is defined by a number : the magnitude - or scale - of the property, and
@@ -10,6 +11,7 @@ module Shaku
   class Measure
     include Comparable
     include Arithmetic
+    include Conversion
 
     # @!attribute [r] scale
     #   @return [Float] the magnitude of the measurement
@@ -37,10 +39,6 @@ module Shaku
       raise ArgumentError, 'Unit argument should be a string' unless unit.respond_to?(:to_str)
       @scale = scale.to_f
       @unit = unit
-    end
-
-    def to_measure
-      self
     end
 
     def inspect

@@ -158,6 +158,20 @@ module Shaku
             expect(measure.to_measure).to be(measure)
           end
         end
+
+        describe 'to_f' do
+          it 'is the magnitude of the measure' do
+            measure = Measure.new(2.5, 'cm')
+            expect(measure.to_f).to eq(2.5)
+          end
+        end
+
+        describe 'to_i' do
+          it 'is the magnitude coerced to an integer' do
+            measure = Measure.new(2.5, 'cm')
+            expect(measure.to_i).to eq(2)
+          end
+        end
       end
     end
   end
